@@ -13,12 +13,9 @@ jQuery(document).ready(function() {
 
     $(".task").last().click(function(){
       $("#show-completed").show();
-      $(".task-show").text(newTask.name);
-      $(".task-completed").text(newTask.done);
-      $(".task-completed").click(function() {
-        newTask.done = newTask.done === false ? true : false;
-        $(this).text(newTask.done);
-      });
+      $(".task-completed").append("<li>" + newTask.name + "</li>");
+      newTask.done = true;
+      $(this).parent().remove();
     });
 
   });

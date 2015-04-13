@@ -1,0 +1,17 @@
+#show-completed {
+  display: none;
+}
+
+.task {
+  cursor: pointer;
+  color: #0088cc;
+}
+
+.task:hover {
+  text-decoration: underline;
+}
+
+.task-show,
+.task-completed {
+  color: red;
+}

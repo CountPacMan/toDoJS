@@ -7,11 +7,16 @@ li {
 }
 
 .task {
-  cursor: pointer;
   color: #0088cc;
 }
 
-.task:hover {
+.task,
+.complete {
+  cursor: pointer;
+}
+
+.task:hover,
+.complete:hover {
   text-decoration: underline;
 }
 

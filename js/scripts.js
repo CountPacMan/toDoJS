@@ -11,12 +11,22 @@ jQuery(document).ready(function() {
 
     $("#task").val("");
 
-    $(".task").last().click(function(){
-      $("#show-completed").show();
-      $(".task-completed").append("<li>" + newTask.name + "</li>");
-      newTask.done = true;
-      $(this).parent().remove();
-    });
+    function clicker() {
+      $(".task").last().click(function(){
+        $("#show-completed").show();
+        $(".task-completed").append("<li><span class='complete'>" + newTask.name + "</span></li>");
+        newTask.done = true;
+        $(this).parent().remove();
+        $(".complete").last().click(function() {
+          $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
+          newTask.done = false;
+          $(this).parent().remove();
+          clicker();
+        });
+      });
+    }
+
+    clicker();
 
   });
 });

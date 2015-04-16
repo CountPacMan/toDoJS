@@ -15,6 +15,16 @@ jQuery(document).ready(function() {
       $(".category").last().click(function() {
         $("#add-task").show();
         currentCategory = $(this).text();
+        var index;
+        for (var i in allCategories) {
+          if (allCategories[i].name === currentCategory) {
+            index = i;
+          }
+        }
+        var ourCategory = allCategories[index];
+        ourCategory.tasks.forEach(function(task) {
+          $("ul#tasks").append("<li><span class='task'>" + task.name + "</span></li>");
+        });
       });
     }
     clicker();
@@ -42,11 +52,7 @@ jQuery(document).ready(function() {
     console.log(ourCategory);
     ourCategory.tasks.push(newTask);
 
-    ourCategory.tasks.forEach(function(name) {
-      $("ul#tasks").append("<li><span class='task'>" + task.name + "</span></li>");
-    });
-
-    // $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
+    $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
 
     $("#task").val("");
 

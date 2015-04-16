@@ -87,7 +87,7 @@ jQuery(document).ready(function() {
     $("#task").val("");
     var child = $(".task").last();
     $(".task").last().click(function() {
-      addTaskClicker(task, child);
+      addTaskClicker(newTask, child);
     });
   });
 });

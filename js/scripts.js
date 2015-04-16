@@ -1,3 +1,5 @@
+var currentCategory;
+var allCategories = [];
 
 jQuery(document).ready(function() {
   $("#category").focus();
@@ -5,13 +7,14 @@ jQuery(document).ready(function() {
     event.preventDefault();
     var inputCategory = $("#category").val();
     var newCategory = {name: inputCategory, tasks: []};
-
+    allCategories.push(newCategory);
     $("#categories").append("<li><span class='category'>" + newCategory.name + "</span></li>");
     $("#category").val("");
 
     function clicker() {
       $(".category").last().click(function() {
         $("#add-task").show();
+        currentCategory = $(this).text();
       });
     }
     clicker();
@@ -29,9 +32,17 @@ jQuery(document).ready(function() {
 
     var inputTask = $("#task").val();
     var newTask = {name: inputTask, done: false};
-    newCategory.tasks.push(newTask);
+    var index;
+    for (var i in allCategories) {
+      if (allCategories[i].name === currentCategory) {
+        index = i;
+      }
+    }
+    var ourCategory = allCategories[index];
+    console.log(ourCategory);
+    ourCategory.tasks.push(newTask);
 
-    newCategory.tasks.forEach(function(name) {
+    ourCategory.tasks.forEach(function(name) {
       $("ul#tasks").append("<li><span class='task'>" + task.name + "</span></li>");
     });
 

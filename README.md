@@ -1,6 +1,6 @@
 # toDoJS for Epicodus
-## by Daniel Toader and Chitra Atmakuru
-### Date: April 13, 2015
+## by Daniel Toader and Chitra Atmakuru and Tanner Heffner
+### Date: April 16, 2015
 #### Description
 This web app lets user enter tasks and mark when the task is done.
 
@@ -8,7 +8,7 @@ This web app lets user enter tasks and mark when the task is done.
 1. Clone this git repository
 2. Start the web app by loading toDo.html in your browser
 
-#### Copyright © 2015, Daniel Toader and Chitra Atmakuru
+#### Copyright © 2015, Daniel Toader and Chitra Atmakuru and Tanner Heffner
 
 #### License: [MIT](https://github.com/twbs/bootstrap/blob/master/LICENSE)
 

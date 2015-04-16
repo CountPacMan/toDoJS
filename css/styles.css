@@ -2,21 +2,26 @@ li {
   list-style-type: none;
 }
 
-#show-completed {
+#show-completed,
+#add-task,
+.task-list {
   display: none;
 }
 
-.task {
+.task,
+.category {
   color: #0088cc;
 }
 
 .task,
-.complete {
+.complete,
+.category {
   cursor: pointer;
 }
 
 .task:hover,
-.complete:hover {
+.complete:hover,
+.category:hover {
   text-decoration: underline;
 }
 

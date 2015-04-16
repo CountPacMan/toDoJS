@@ -1,6 +1,19 @@
 var currentCategory;
 var allCategories = [];
 
+function addTaskClicker(task) {
+  $("#show-completed").show();
+  task.done = true;
+  $(this).parent().remove();
+  $(".complete").last().click(addCompletedTaskClicker(task));
+}
+
+function addCompletedTaskClicker(task) {
+  task.done = false;
+  $(this).parent().remove();
+  $(".task").last().click(addTaskClicker(task));
+}
+
 jQuery(document).ready(function() {
   $("#category").focus();
   $("#add-category").submit(function(event) {
@@ -13,6 +26,8 @@ jQuery(document).ready(function() {
 
     function clicker() {
       $(".category").last().click(function() {
+        $("#tasks").text("");
+        $(".task-completed").text("");
         $("#add-task").show();
         currentCategory = $(this).text();
         var index;
@@ -23,7 +38,13 @@ jQuery(document).ready(function() {
         }
         var ourCategory = allCategories[index];
         ourCategory.tasks.forEach(function(task) {
-          $("ul#tasks").append("<li><span class='task'>" + task.name + "</span></li>");
+          if (!task.done) {
+            $("ul#tasks").append("<li><span class='task'>" + task.name + "</span></li>");
+            $(".task").last().click(addTaskClicker(task));
+          } else {
+            $(".task-completed").append("<li><span class='complete'>" + task.name + "</span></li>");
+            $(".complete").last().click(addCompletedTaskClicker(task));
+          }
         });
       });
     }
@@ -49,27 +70,27 @@ jQuery(document).ready(function() {
       }
     }
     var ourCategory = allCategories[index];
-    console.log(ourCategory);
     ourCategory.tasks.push(newTask);
 
     $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
 
     $("#task").val("");
 
-    function clicker() {
-      $(".task").last().click(function(){
-        $("#show-completed").show();
-        $(".task-completed").append("<li><span class='complete'>" + newTask.name + "</span></li>");
-        newTask.done = true;
-        $(this).parent().remove();
-        $(".complete").last().click(function() {
-          $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
-          newTask.done = false;
-          $(this).parent().remove();
-          clicker();
-        });
-      });
-    }
-    clicker();
+    $(".task").last().click(addTaskClicker(task));
+    // function clicker() {
+    //   $(".task").last().click(function(){
+    //     $("#show-completed").show();
+    //     $(".task-completed").append("<li><span class='complete'>" + newTask.name + "</span></li>");
+    //     newTask.done = true;
+    //     $(this).parent().remove();
+    //     $(".complete").last().click(function() {
+    //       $("ul#tasks").append("<li><span class='task'>" + newTask.name + "</span></li>");
+    //       newTask.done = false;
+    //       $(this).parent().remove();
+    //       clicker();
+    //     });
+    //   });
+    // }
+    // clicker();
   });
 });
